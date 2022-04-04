@@ -1,0 +1,10 @@
+.authCode {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  margin-top: 1.5rem !important;
+}
