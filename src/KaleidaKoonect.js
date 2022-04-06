@@ -1,26 +1,122 @@
-import { useEffect } from "react";
-const {SmsClient, SmsMessage, ClientConfiguration} = require('connect-sdk-node');
+import { useEffect, useState } from "react";
+import {Spinner} from '@momentum-ui/react';
+import {Button} from '@mui/material';
+import MuiPhoneNumber from "material-ui-phone-number";
+import { Typography } from '@mui/material';
+import axios from 'axios';
+import { findPhoneNumbersInText, isValidPhoneNumber } from 'libphonenumber-js'
+
+import './KaleidaKonnect.css';
+import { padding } from "@mui/system";
 
 const Konnect = () => {
-  useEffect(() => {
-    // const clientConfiguration = new ClientConfiguration("3cb3fe30-463c-11ec-b58d-063d0d6fdfb5", "https://api-sandbox.imiconnect.io");
-    // const smsClient = new SmsClient(clientConfiguration);
-    
-    // const smsMessage = new SmsMessage().of_text("+12019401285", "+16504715214", "");
-    
-    // const request = smsClient.sendMessage(smsMessage);
-    
-    
-    // request
-    // .then(res => {
-    //     console.log(res);
-    // })
-    // .catch(err => {
-    //     console.error(err);
-    // });
-  },[]);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [displayJoinView, setDisplayJoinView] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  return null;
+  const sendMessage = async (meetingLink) => {
+    try {
+      const body = JSON.stringify({
+        "number": `${findPhoneNumbersInText(phoneNumber)[0].number.number}`,
+        "message": `Someone has invited you to join the meeting: ${meetingLink}`
+      });
+  
+      const config = {
+        method: 'post',
+        url: 'https://hooks-us.imiconnect.io/events/JAMIQW66NE',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data: body
+      };
+  
+      const {data} = await axios(config);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  const generateMeetingLink = async () => {
+    try {
+      const config = {
+        method: 'post',
+        url: 'https://wxsd.wbx.ninja/wxsd-guest-demo/create_url',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: JSON.stringify({
+          "sip_target": "kiosk.wxsd@webex.com",
+          "header_toggle": "false",
+          "sms_button": "false",
+          "expire_hours": 8,
+          "self_view": "true",
+          "offset": "420"
+        })
+      };
+
+      const {data:{urls: {Guest}}} = await axios(config);
+
+      return Guest[0];
+    } catch(error) {
+      console.log(error);
+    }
+  };
+
+  const invite = async () => {
+    setIsLoading(true);
+    const meetingLink =  await generateMeetingLink();
+    await sendMessage(meetingLink);
+    setIsLoading(false);
+    setDisplayJoinView(true);
+  }
+
+  const handlePhoneNumberOnChange = (value) => {
+    if(isValidPhoneNumber(value)) {
+      setIsButtonDisabled(false);
+    }
+
+    setPhoneNumber(value);
+  };
+
+
+  const joinTheBridge = () => {
+    window.location.href = `sip:kiosk.wxsd@webex.com`;
+  };
+
+  const SMSView =  <div className="SMSView">
+    <Typography variant="h7"> Enter your family member’s mobile number to start a video chat with them </Typography>
+    <MuiPhoneNumber
+        name="phone"
+        label="Phone Number"
+        data-cy="user-phone"
+        defaultCountry={"us"}
+        value={phoneNumber}
+        onChange={(value) => { handlePhoneNumberOnChange(value)}}
+      />
+      <Button
+        disabled={isButtonDisabled}
+        onClick={async (e) => await invite()}
+      >Invite!
+      </Button>
+    </div>;
+  const joinView = <div className="SMSView">
+     <Typography variant="h6">SMS Had Been Sent Successfully!</Typography>
+    <Button
+      onClick={(e) => {joinTheBridge()}}
+      style={{
+        backgroundColor: "#24ab31",
+        color: "white",
+        alignSelf: "center",
+        padding: "0.5rem 1rem"
+      }}
+    >Join The Meeting!</Button>
+  </div>
+  const view = isLoading ? <Spinner /> : displayJoinView ? joinView : SMSView;
+
+  return <div className="konnectModal">
+    {view}
+  </div>;
 };
 
 export default Konnect;

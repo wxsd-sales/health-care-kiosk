@@ -1,0 +1,16 @@
+.konnectModal {
+  height: 10rem;
+  padding: 1rem;
+}
+
+.SMSView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.konnectModal .MuiButton-root {
+  align-self: flex-end;
+}

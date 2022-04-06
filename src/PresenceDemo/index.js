@@ -9,7 +9,6 @@ import { client_id, client_secret, auth_url, server_url, redirect_uri } from './
 
 import AuthCode from './AuthCode';
 
-
 export default class PresenceDemo extends Component {
   constructor(props) {
     super(props);
@@ -82,14 +81,14 @@ export default class PresenceDemo extends Component {
 
 
   render() {
-  return <>
+  return <div className="presenceDemo">
       {this.state.isTokenValid ? <Iframe
-          url={`https://presence.ngrok.io/?token=${localStorage.getItem('webex_token')}&showModal=false&mode=polling`}
+          url={`https://wxsd-sales.github.io/PresenceOnDevice/?token=${localStorage.getItem('webex_token')}&showModal=false&mode=polling`}
           width="100%"
           height="600px"
           id="id"
         /> : <AuthCode  loginState={this.loginState}/> }
-    </>
+    </div>
 
   }
 }

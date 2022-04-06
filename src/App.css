@@ -1,16 +1,21 @@
-.buttons {
-  position: absolute;
+.bottom {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: white;
+  bottom: 0;
   width: 100%;
 }
 
-.clinicianButton {
+.buttons {
   display: flex;
-  align-items: center;
-  height: 8rem;
-  margin-left: 1rem;
+}
+
+.clinicianButton {
+  margin: 0 0 1rem 1rem;
+  bottom: 0;
+  position: absolute;
 }
 
 iframe {
