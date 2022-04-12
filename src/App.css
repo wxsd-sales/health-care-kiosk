@@ -8,22 +8,40 @@
   width: 100%;
 }
 
+.button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .buttons {
   display: flex;
 }
 
+.button p {
+  margin-bottom: 0.5rem;
+}
+
 .clinicianButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 0 0 1rem 1rem;
   bottom: 0;
   position: absolute;
 }
 
-iframe {
-  border: none;
+img {
+  width: 100%;
 }
 
 .MuiBox-root {
   padding: 0 !important;
+}
+
+.tv {
+  width: 40rem !important;
 }
 
 .MuiButton-root {

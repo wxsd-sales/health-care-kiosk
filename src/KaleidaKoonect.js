@@ -14,6 +14,7 @@ const Konnect = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [displayJoinView, setDisplayJoinView] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const sip = new URLSearchParams(window.location.search).get("sip") || "kiosk.wxsd@webex.com"
 
   const sendMessage = async (meetingLink) => {
     try {
@@ -46,7 +47,7 @@ const Konnect = () => {
           'Content-Type': 'application/json'
         },
         data: JSON.stringify({
-          "sip_target": "kiosk.wxsd@webex.com",
+          "sip_target": sip,
           "header_toggle": "false",
           "sms_button": "false",
           "expire_hours": 8,
@@ -81,7 +82,7 @@ const Konnect = () => {
 
 
   const joinTheBridge = () => {
-    window.location.href = `sip:kiosk.wxsd@webex.com`;
+    window.location.href = `sip:${sip}`;
   };
 
   const SMSView =  <div className="SMSView">

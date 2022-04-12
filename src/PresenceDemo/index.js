@@ -20,6 +20,7 @@ export default class PresenceDemo extends Component {
       isWebexConnected: false,
       isTokenValid: !!this.code,
       displayAuthPrompt: false,
+      token: localStorage.getItem('webex_token')
     };
   }
 
@@ -31,18 +32,19 @@ export default class PresenceDemo extends Component {
       const socket = io(server_url);
       socket.emit('register', this.loginState);
 
-      socket.on('token', async (token) => {
+      socket.on('token', async (newToken) => {
         this.setState({isTokenValid: true});
-        this.storeToken(token);
+        this.setState({token: newToken.access_token })
       });
     }
   }
   
-
+  
   storeToken({expires_in, access_token, refresh_token}) {
     const startDate = moment.utc();
     const expirationDate = startDate.add(Number(expires_in), 'seconds');
     
+    this.storeToken(access_token);
     localStorage.setItem('webex_token', access_token);
     localStorage.setItem('expiration_date', expirationDate.format());
     localStorage.setItem('refresh_token', refresh_token);
@@ -79,11 +81,11 @@ export default class PresenceDemo extends Component {
     }
   }
 
-
+  
   render() {
   return <div className="presenceDemo">
       {this.state.isTokenValid ? <Iframe
-          url={`https://wxsd-sales.github.io/PresenceOnDevice/?token=${localStorage.getItem('webex_token')}&showModal=false&mode=polling`}
+          url={`https://wxsd-sales.github.io/PresenceOnDevice/?token=${this.state.token}&showModal=false&mode=polling`}
           width="100%"
           height="600px"
           id="id"
