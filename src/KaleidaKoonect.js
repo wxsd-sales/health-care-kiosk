@@ -5,6 +5,7 @@ import MuiPhoneNumber from "material-ui-phone-number";
 import { Typography } from '@mui/material';
 import axios from 'axios';
 import { findPhoneNumbersInText, isValidPhoneNumber } from 'libphonenumber-js'
+import { redirect_uri } from "./PresenceDemo/constants";
 
 import './KaleidaKonnect.css';
 import { padding } from "@mui/system";
@@ -52,7 +53,8 @@ const Konnect = () => {
           "sms_button": "false",
           "expire_hours": 8,
           "self_view": "true",
-          "offset": "420"
+          "offset": "420",
+          "background_url": `${redirect_uri}/kaleida-logo.png`
         })
       };
 
