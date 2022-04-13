@@ -54,7 +54,8 @@ const Konnect = () => {
           "expire_hours": 8,
           "self_view": "true",
           "offset": "420",
-          "background_url": `${redirect_uri}/kaleida-logo.png`
+          // "background_url": `${redirect_uri}/kaleida-logo.png`,
+          "auto_dial": true
         })
       };
 
