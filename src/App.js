@@ -70,7 +70,7 @@ function Buttons() {
       </div>
       <div className="clinicianButton">
         <Button
-          onClick={() => {setModalContent(<PresenceDemo />); setOpen(true)}} 
+          onClick={() => {setModalContent(<PresenceDemo openModal={setOpen}/>); setOpen(true)}} 
           size="large"
           className="clinicianButton"
           startIcon={<Avatar 

@@ -1,22 +1,25 @@
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import Iframe from 'react-iframe';
 import moment from 'moment';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { io } from "socket.io-client";
 import queryString from 'querystring';
+import { Button } from '@mui/material';
 import { client_id, client_secret, auth_url, server_url, redirect_uri } from './constants';
 
 import AuthCode from './AuthCode';
-
+import "./index.css";
 export default class PresenceDemo extends Component {
   constructor(props) {
     super(props);
     this.code = new URLSearchParams(window.location.search).get("code");
     this.urlState = new URLSearchParams(window.location.search).get("state");
+    this.iframeRef = createRef();
 
     this.loginState = uuidv4();
     this.state = {
+      displaySignOutButton: false,
       isWebexConnected: false,
       isTokenValid: !!this.code,
       displayAuthPrompt: false,
@@ -81,16 +84,40 @@ export default class PresenceDemo extends Component {
     }
   }
 
+  async handleSignOut() {
+    const validDomains = ["http://localhost:8080", "https://presence.ngrok.io", "https://wxsd-sales.github.io"];
+    
+    window.addEventListener("message", (ev) => {
+      if(validDomains.includes(ev.origin)) {
+        if(ev.data.type === "sign-out") {
+          localStorage.removeItem('webex_token');
+          localStorage.removeItem('expiration_date');
+          localStorage.removeItem('refresh_token');
+        }
+
+        this.props.openModal(false);
+      }
+    });
+
+    this.iframeRef.current.contentWindow.postMessage({type: 'sign-out'}, "https://wxsd-sales.github.io/PresenceOnDevice");
+
+  }
   
   render() {
-  return <div className="presenceDemo">
-      {this.state.isTokenValid ? <Iframe
-          url={`https://wxsd-sales.github.io/PresenceOnDevice/?token=${this.state.token}&showModal=false&mode=polling`}
-          width="100%"
-          height="600px"
-          id="id"
-        /> : <AuthCode  loginState={this.loginState}/> }
-    </div>
-
+    return <div className="presenceDemo">
+        {this.state.isTokenValid ? 
+          <div className="presenceContent">
+            {this.state.displaySignOutButton && <Button color="error" onClick={async() => {await this.handleSignOut()}}>Sign Out</Button>}
+            <iframe
+              title="presence"
+              src={`https://wxsd-sales.github.io/presence-on-device/?token=${this.state.token}&showModal=false&mode=polling`}
+              width="100%"
+              height="600px"
+              id="id"
+              ref={this.iframeRef}
+              onLoad={()=>{this.setState({displaySignOutButton: true})}}
+            /> 
+          </div> : <AuthCode  loginState={this.loginState}/> }
+      </div>
   }
 }

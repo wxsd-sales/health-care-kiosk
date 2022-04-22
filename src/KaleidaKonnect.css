@@ -14,3 +14,7 @@
 .konnectModal .MuiButton-root {
   align-self: flex-end;
 }
+
+.MuiPhoneNumber-flagButton {
+  width: min-content;
+}
