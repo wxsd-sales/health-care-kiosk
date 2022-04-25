@@ -8,6 +8,22 @@
   width: 100%;
 }
 
+.invalidSipModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.invalidSipModal h3 {
+  margin-bottom: 0.75rem;
+}
+
+.invalidSipModal h6 {
+  color: gray;
+}
+
 .button {
   display: flex;
   flex-direction: column;

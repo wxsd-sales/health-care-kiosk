@@ -38,6 +38,7 @@ export default class PresenceDemo extends Component {
       socket.on('token', async (newToken) => {
         this.setState({isTokenValid: true});
         this.setState({token: newToken.access_token })
+        this.storeToken(newToken);
       });
     }
   }
@@ -47,7 +48,6 @@ export default class PresenceDemo extends Component {
     const startDate = moment.utc();
     const expirationDate = startDate.add(Number(expires_in), 'seconds');
     
-    this.storeToken(access_token);
     localStorage.setItem('webex_token', access_token);
     localStorage.setItem('expiration_date', expirationDate.format());
     localStorage.setItem('refresh_token', refresh_token);
@@ -111,6 +111,7 @@ export default class PresenceDemo extends Component {
             <iframe
               title="presence"
               src={`https://wxsd-sales.github.io/presence-on-device/?token=${this.state.token}&showModal=false&mode=polling`}
+              // src={`https://webexpresence.ngrok.io?token=${this.state.token}&showModal=false&mode=polling`}
               width="100%"
               height="600px"
               id="id"

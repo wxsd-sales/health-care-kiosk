@@ -15,7 +15,7 @@ const Konnect = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [displayJoinView, setDisplayJoinView] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const sip = new URLSearchParams(window.location.search).get("sip") || "kiosk.wxsd@webex.com"
+  const sip = localStorage.getItem("bridge_sip");
 
   const sendMessage = async (meetingLink) => {
     try {
@@ -77,6 +77,8 @@ const Konnect = () => {
   const handlePhoneNumberOnChange = (value) => {
     if(isValidPhoneNumber(value)) {
       setIsButtonDisabled(false);
+    } else {
+      setIsButtonDisabled(true);
     }
 
     setPhoneNumber(value);
@@ -88,23 +90,25 @@ const Konnect = () => {
   };
 
   const SMSView =  <div className="SMSView">
-    <Typography variant="h7"> Enter your family member’s mobile number to start a video chat with them </Typography>
+    <Typography> Enter your family member’s mobile number to start a video chat with them.</Typography>
     <MuiPhoneNumber
-        name="phone"
-        label="Phone Number"
-        data-cy="user-phone"
-        defaultCountry={"us"}
-        value={phoneNumber}
-        onChange={(value) => { handlePhoneNumberOnChange(value)}}
-      />
+      disableDropdown="true"  
+      name="phone"
+      label="Phone Number"
+      data-cy="user-phone"
+      defaultCountry={"us"}
+      value={phoneNumber}
+      onChange={(value) => { handlePhoneNumberOnChange(value)}}
+    />
       <Button
         disabled={isButtonDisabled}
         onClick={async (e) => await invite()}
+        variant="outlined"
       >Invite!
       </Button>
     </div>;
   const joinView = <div className="SMSView">
-     <Typography variant="h6">SMS Had Been Sent Successfully!</Typography>
+     <Typography variant="h6">SMS Has Been Sent Successfully!</Typography>
     <Button
       onClick={(e) => {joinTheBridge()}}
       style={{

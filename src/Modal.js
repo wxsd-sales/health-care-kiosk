@@ -16,8 +16,6 @@ export default function TransitionsModal({children, open, close, width="400px"})
     width: width,
     bgcolor: 'background.paper',
     border: 'none',
-    boxShadow: 24,
-    p: 4,
   };
 
   return (

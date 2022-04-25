@@ -77,7 +77,7 @@ function Buttons() {
             sx={{ height: '4rem', width: '4rem' }}
             src={Clinician} />}
         />
-        <Typography variant="h7">Clinician Only</Typography>
+        <Typography>Clinician Only</Typography>
       </div>
   </>
 };
@@ -87,12 +87,25 @@ class App extends Component {
     super();
     this.state = {
       displayAuthPrompt: false,
+      displayInvalidSipModal: false
     }
   }
+
+  storeSip() {
+    const VALID_SIP = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\w|-)+\.)*(webex|ciscospark|projectsquared).com$/;
+    const sip = new URLSearchParams(window.location.search).get("sip") || "kiosk.wxsd@webex.com";
+    
+    if(VALID_SIP.test(sip)) {
+      localStorage.setItem('bridge_sip', sip);
+    } else {
+      this.setState({displayInvalidSipModal: true});
+    }
+  }  
 
   async componentDidMount()  {
     const code = new URLSearchParams(window.location.search).get("code");
     const urlState = new URLSearchParams(window.location.search).get("state");
+    this.storeSip();
 
     if(code) {
       const {data} = await axios.post(auth_url, queryString.stringify({
@@ -122,14 +135,24 @@ class App extends Component {
       <p>You may now close this tab!</p>
     </div>;
 
-    return <div>
-      {this.state.displayAuthPrompt ? authSuccessful :
+    const app = this.state.displayAuthPrompt ? authSuccessful :
       <>
         <img src={kaleida} alt="kaleida"/>
         <Buttons /> 
-      </>
-      }
-      </div>
+      </>;
+
+    const modalContent = <div className="invalidSipModal">
+      <Typography variant="h3">Invalid Url Parameter</Typography>
+      <Typography variant="h6">Please check your Web App/Kiosk/Signage Url configuration!</Typography>
+    </div>;
+
+    const content = this.state.displayInvalidSipModal ?
+      <Modal open={this.state.displayInvalidSipModal} width={"40rem"}>
+        {modalContent}
+      </Modal>
+    : app;
+
+    return <div> {content} </div>
   }
 }
 
