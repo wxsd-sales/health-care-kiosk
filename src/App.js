@@ -92,7 +92,7 @@ class App extends Component {
   }
 
   storeSip() {
-    const VALID_SIP = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\w|-)+\.)*(webex|ciscospark|projectsquared).com$/;
+    const VALID_SIP = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\w|-)+\.)*(webex|cisco|ciscospark|projectsquared).com$/;
     const sip = new URLSearchParams(window.location.search).get("sip") || "kiosk.wxsd@webex.com";
     
     if(VALID_SIP.test(sip)) {
