@@ -1,70 +1,125 @@
-# Getting Started with Create React App
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <h2 align="center">WebEngine Calling Application for RoomOS Devices</h2>
 
-## Available Scripts
+  <p align="center">
+    Webex User Presence Lookup & SIPURIProtocol Handler dialing
+    <br />
+    <a href="https://github.com/WXSD-Sales/webex-presence"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://wxsd-sales.github.io/webex-presence/">View Demo</a>
+    ·
+    <a href="https://github.com/WXSD-Sales/webex-presence/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/WXSD-Sales/webex-presence/issues">Request Feature</a>
+  </p>
+</p>
 
-In the project directory, you can run:
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-### `npm start`
+<!-- ABOUT THE PROJECT -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## About The Project
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+In this demo we show how to lookup and subscribe to others presence status and to make a SIP call from your device!
 
-### `npm test`
+### Built With
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Webex Browser SDK](https://github.com/webex/webex-js-sdk)
+- [React](https://reactjs.org)
+- [TypeScript](https://www.typescriptlang.org/)
 
-### `npm run build`
+<!-- GETTING STARTED -->
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+If you would like to contribute to our source code and to improve our demo, please follow the steps mentioned below:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+1. Clone the repo
+   ```sh
+   git clone https://github.com/WXSD-Sales/webex-presence.git
+   ```
+2. We use NVM to manage our node.js machine versioning. You can learn more about NVM [here](https://github.com/nvm-sh/nvm)
+   ```sh
+   nvm use
+   ```
+3. Install the packages via [Yarn](https://classic.yarnpkg.com/en/)
+   ```sh
+   yarn
+   ```
+4. Start the server
+   ```sh
+   yarn start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<!-- CONTRIBUTING -->
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Fork the Project
+2. Create your Feature Branch in your forked repo (`git checkout -b myrepo/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin myrepo/AmazingFeature`)
+5. Open a Pull Request
 
-## Learn More
+<!-- LICENSE -->
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Distributed under the MIT License. See `LICENSE` for more information.
 
-### Code Splitting
+<!-- CONTACT -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Contact
 
-### Analyzing the Bundle Size
+wxsd@cisco.external.com
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[contributors-shield]: https://img.shields.io/github/contributors/WXSD-Sales/Kaleida.svg?style=for-the-badge
+[contributors-url]: https://github.com/WXSD-Sales/Kaleida/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/WXSD-Sales/Kaleida.svg?style=for-the-badge
+[forks-url]: https://github.com/WXSD-Sales/Kaleida/network/members
+[stars-shield]: https://img.shields.io/github/stars/WXSD-Sales/Kaleida.svg?style=for-the-badge
+[stars-url]: https://github.com/WXSD-Sales/Kaleida/stargazers
+[issues-shield]: https://img.shields.io/github/issues/WXSD-Sales/Kaleida.svg?style=for-the-badge
+[issues-url]: https://github.com/WXSD-Sales/Kaleida/issues
+[license-shield]: https://img.shields.io/github/license/WXSD-Sales/Kaleida.svg?style=for-the-badge
+[license-url]: https://github.com/WXSD-Sales/Kaleida/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/arash-koushkebaghi-9b1701a4/
+[product-screenshot]: assets/images/presence.png
