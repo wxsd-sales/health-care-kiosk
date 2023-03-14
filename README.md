@@ -8,7 +8,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <h2 align="center">WebEngine Calling Application for RoomOS Devices</h2>
+  <h2 align="center">Health Care In Kiosk Mode</h2>
 
   <p align="center">
     Webex User Presence Lookup & SIPURIProtocol Handler dialing
