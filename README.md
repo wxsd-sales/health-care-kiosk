@@ -11,16 +11,16 @@
   <h2 align="center">Health Care In Kiosk Mode</h2>
 
   <p align="center">
-    Webex User Presence Lookup & SIPURIProtocol Handler dialing
+    Experience Health Care Use Case in Kiosk Mode
     <br />
-    <a href="https://github.com/WXSD-Sales/webex-presence"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/WXSD-Sales/health-care-kiosk"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://wxsd-sales.github.io/webex-presence/">View Demo</a>
+    <a href="https://wxsd-sales.github.io/health-care-kiosk/">View Demo</a>
     ·
-    <a href="https://github.com/WXSD-Sales/webex-presence/issues">Report Bug</a>
+    <a href="https://github.com/WXSD-Sales/health-care-kiosk/issues">Report Bug</a>
     ·
-    <a href="https://github.com/WXSD-Sales/webex-presence/issues">Request Feature</a>
+    <a href="https://github.com/WXSD-Sales/health-care-kiosk/issues">Request Feature</a>
   </p>
 </p>
 
@@ -72,7 +72,7 @@ If you would like to contribute to our source code and to improve our demo, plea
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/WXSD-Sales/webex-presence.git
+   git clone https://github.com/WXSD-Sales/health-care-kiosk.git
    ```
 2. We use NVM to manage our node.js machine versioning. You can learn more about NVM [here](https://github.com/nvm-sh/nvm)
    ```sh
